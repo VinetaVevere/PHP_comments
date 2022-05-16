@@ -1,17 +1,50 @@
+body {
+    background: #fbffc2;
+}
+
 .template {
     display:none;
 }
 
-.comments {
-    max-width:25rem;
+form {
+    background:#ffffff;
+    display: flex;
+    flex-direction:column;
     margin:auto;
+    max-width:25rem;
+    padding:1rem;
+    border-radius: 0.25rem;
+    margin-bottom:20px;
+}
+input[type=text], textarea {
+    margin-bottom:20px;
+    background: #fff6c2;
+    border: 3px solid rgb(237, 209, 31);
+    border-radius: 0.25rem;
+    padding:8px;
+}
+
+#comments_form textarea {
+    resize: vertical;
+}
+
+button {
+    background: rgb(237, 209, 31);
+    border-radius: 0.25rem;
+    border:0;
+    padding:8px;
+}
+
+.comments {
     background: rgb(217, 200, 255);
+    margin:auto;
+    max-width:25rem;
     padding:1rem;
 }
 
 .comments__entry {
-    padding: 0.25rem;
     border-bottom: 1px solid rgb(100, 87, 126);
+    padding: 0.25rem;
 
     .author {
         display:block;
