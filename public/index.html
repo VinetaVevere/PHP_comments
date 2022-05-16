@@ -5,9 +5,9 @@
 <title>Comments</title>
 <link rel="stylesheet" href="style.css">
 
-<form action="" id="comments_form">
+<form action="api.php?name=add-comment" id="comments_form">
     <input type="text" name="author" placeholder="Name" required>
-    <textarea name="message" id="" cols="30" rows="10" placeholder="Comment Message" required></textarea>
+    <textarea name="message" rows="10" placeholder="Comment Message" required></textarea>
     <button type="submit">comment</button>
 </form>
 
@@ -18,4 +18,5 @@
     </div>
 </div>
 
+<script src="xhttp.js"></script>
 <script src="script.js"></script>
