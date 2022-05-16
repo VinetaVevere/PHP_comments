@@ -3,15 +3,19 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Comments</title>
+<link rel="stylesheet" href="style.css">
 
-<form action="">
-    <input type="text" name="author" placeholder="Name">
-    <textarea name="" id="" cols="30" rows="10" placeholder="Comment Message"></textarea>
+<form action="" id="comments_form">
+    <input type="text" name="author" placeholder="Name" required>
+    <textarea name="message" id="" cols="30" rows="10" placeholder="Comment Message" required></textarea>
     <button type="submit">comment</button>
 </form>
 
 <div class="comments">
     <div class="comments__entry template">
-        <p></p>
+        <p class="message"></p>
+        <strong class="author"></strong>
     </div>
 </div>
+
+<script src="script.js"></script>
