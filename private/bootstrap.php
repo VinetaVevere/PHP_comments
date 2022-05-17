@@ -9,7 +9,6 @@ define('DB_NAME', 'bootcamp31');
 define('DB_USERNAME', 'root');
 define('DB_PASSWORD', 'root');
 
-
 spl_autoload_register(function ($class) {
     $file = __DIR__ . '/classes/' . str_replace('\\', DIRECTORY_SEPARATOR, $class).'.php';
     if (file_exists($file)) {

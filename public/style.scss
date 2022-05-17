@@ -35,6 +35,16 @@ button {
     padding:8px;
 }
 
+.comment_first_block {
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:2rem;
+
+    .message {
+        margin:0;
+    }
+}
+
 .comments {
     background: rgb(217, 200, 255);
     margin:auto;
