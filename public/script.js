@@ -31,5 +31,5 @@ function addComment(id, author, message) {
         });
     };
 
-    comment_block.append(new_comment)
+    comment_block.append(new_comment);
 }
