@@ -2,6 +2,7 @@
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="content-language" content="lv">
 <title>Comments</title>
 <link rel="stylesheet" href="style.css">
 
@@ -15,10 +16,24 @@
     <div class="comments__entry template">
         <div class="comment_first_block">
             <p class="message"></p>
-            <a href="#" class="delete">delete</a>
+            <div>
+                <a href="#" class="delete">delete</a>
+                <a href="#" class="edit">edit</a>
+            </div>
+
         </div>
         <strong class="author"></strong>
     </div>
+</div>
+
+
+<div class="popup">
+    <form action="api.php?name=update-comment" id="comments_update_form">
+        <input type="hidden" name="id">
+        <input type="text" name="author" placeholder="Name" required>
+        <textarea name="message" rows="10" placeholder="Comment Message" required></textarea>
+        <button type="submit">save</button>
+    </form>
 </div>
 
 <script src="xhttp.js"></script>

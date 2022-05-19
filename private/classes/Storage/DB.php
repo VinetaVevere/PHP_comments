@@ -36,6 +36,22 @@ class DB
         return false;
     }
 
+    public function updateEntry(int $id, array $entry) {
+        $column_value_str = '';
+        foreach ($entry as $key => $value) {
+            $column_value_str .= $key . "=" . "' " . $this->conn->real_escape_string($value) . " ',";
+        }
+        $column_value_str = rtrim($column_value_str, ',');
+
+        $sql = "UPDATE " . $this->table_name . " SET $column_value_str WHERE id=$id";
+
+        $result = $this->conn->query($sql);
+        if ($result === true) {
+            return $entry;
+        }
+        return false;
+    }
+
     public function getAll() {
         $sql = "SELECT * FROM " . $this->table_name;
         $result = $this->conn->query($sql);
@@ -43,8 +59,15 @@ class DB
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
+    public function getEntry(int $id) {
+        $sql = "SELECT * FROM " . $this->table_name . " WHERE id=$id";
+        $result = $this->conn->query($sql);
+
+        return $result->fetch_assoc();
+    }
+
     public function deleteEntry(int $id) {
-        $sql = "DELETE FROM " . $this->table_name . " WHERE id=" . $id;
+        $sql = "DELETE FROM " . $this->table_name . " WHERE id=$id";
 
         return ($this->conn->query($sql) === true);
     }
