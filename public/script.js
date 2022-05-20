@@ -4,7 +4,7 @@ const form_update = document.getElementById('comments_update_form');
 const comment_block = document.querySelector('.comments');
 const comment_template = comment_block.querySelector('.template');
 
-xhttp.get('api.php?name=get-comments', function (response) {
+xhttp.get('api.php?name=getAll-comment', function (response) {
     for (let comment of response.comments) {
         addComment(comment.id, comment.author, comment.message);
     }

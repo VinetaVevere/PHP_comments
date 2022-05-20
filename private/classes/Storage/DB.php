@@ -5,6 +5,7 @@ class DB
 {
     private $table_name = null;
     private $connection = null;
+
     public function __construct(string $table_name) {
         $this->table_name = $table_name;
         $this->conn = new \mysqli(DB_SERVER_NAME, DB_USERNAME, DB_PASSWORD, DB_NAME);
@@ -55,20 +56,34 @@ class DB
     public function getAll() {
         $sql = "SELECT * FROM " . $this->table_name;
         $result = $this->conn->query($sql);
-
-        return $result->fetch_all(MYSQLI_ASSOC);
+        if ($result !== false) {
+            return $result->fetch_all(MYSQLI_ASSOC);
+        }
+        return false;
     }
 
     public function getEntry(int $id) {
         $sql = "SELECT * FROM " . $this->table_name . " WHERE id=$id";
         $result = $this->conn->query($sql);
 
-        return $result->fetch_assoc();
+        if ($result !== false) {
+            return $result->fetch_assoc();
+        }
+        return false;
     }
 
     public function deleteEntry(int $id) {
         $sql = "DELETE FROM " . $this->table_name . " WHERE id=$id";
 
         return ($this->conn->query($sql) === true);
+    }
+
+    public function getError() {
+        if (DEBUG_MODE) {
+            return $this->conn->error;
+        }
+        else {
+            return 'An error has aqured';
+        }
     }
 }
