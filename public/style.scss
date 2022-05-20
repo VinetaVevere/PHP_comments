@@ -2,8 +2,32 @@ body {
     background: #fbffc2;
 }
 
+.content_container, .background_container {
+    position:absolute;
+    width:100vw;
+    top:0;
+    left:0;
+    z-index:0;
+}
+
+.background_container img {
+    width: 300px;
+}
+
 .template {
     display:none;
+}
+
+.top_navigation {
+    position:absolute;
+    width:100vw;
+    z-index: 1;
+    a {
+        background:rgba(0, 0, 0, 0.48);
+        color:#fff6c2;
+        padding:15px;
+        margin:10px;
+    }
 }
 
 form {
@@ -15,6 +39,14 @@ form {
     padding:1rem;
     border-radius: 0.25rem;
     margin-bottom:20px;
+
+    button {
+        background: rgb(237, 209, 31);
+        border-radius: 0.25rem;
+        border:0;
+        padding:8px;
+        margin-top:20px;
+    }
 }
 input[type=text], textarea {
     margin-bottom:20px;
@@ -24,15 +56,11 @@ input[type=text], textarea {
     padding:8px;
 }
 
-#comments_form textarea {
-    resize: vertical;
-}
-
-button {
-    background: rgb(237, 209, 31);
-    border-radius: 0.25rem;
-    border:0;
-    padding:8px;
+#comments_form {
+    margin-top:50px;
+    textarea {
+        resize: vertical;
+    }
 }
 
 .comment_first_block {

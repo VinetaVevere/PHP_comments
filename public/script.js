@@ -4,9 +4,18 @@ const form_update = document.getElementById('comments_update_form');
 const comment_block = document.querySelector('.comments');
 const comment_template = comment_block.querySelector('.template');
 
+const background_container = document.querySelector('.background_container');
+const image_template = background_container.querySelector('.template');
+
 xhttp.get('api.php?name=getAll-comment', function (response) {
     for (let comment of response.comments) {
         addComment(comment.id, comment.author, comment.message);
+    }
+});
+
+xhttp.get('api.php?name=getAll-image', function (response) {
+    for (let image of response.images) {
+        addBackgroundImage('../private/uploads/image_' + image.id + '.png');
     }
 });
 
@@ -62,6 +71,14 @@ function addComment(id, author, message) {
     };
 
     comment_block.append(new_comment);
+}
+
+function addBackgroundImage (src) {
+    const new_image = image_template.cloneNode();
+    new_image.classList.remove('template');
+    new_image.src = src;
+
+    background_container.append(new_image);
 }
 
 let alt_is_down = false;

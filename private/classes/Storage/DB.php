@@ -40,7 +40,7 @@ class DB
     public function updateEntry(int $id, array $entry) {
         $column_value_str = '';
         foreach ($entry as $key => $value) {
-            $column_value_str .= $key . "=" . "' " . $this->conn->real_escape_string($value) . " ',";
+            $column_value_str .= ' ' . $key . "=" . "'" . $this->conn->real_escape_string($value) . "',";
         }
         $column_value_str = rtrim($column_value_str, ',');
 

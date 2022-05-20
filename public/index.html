@@ -6,23 +6,34 @@
 <title>Comments</title>
 <link rel="stylesheet" href="style.css">
 
-<form action="api.php?name=add-comment" id="comments_form">
-    <input type="text" name="author" placeholder="Name" required>
-    <textarea name="message" rows="10" placeholder="Comment Message" required></textarea>
-    <button type="submit">comment</button>
-</form>
+<nav class="top_navigation">
+    <a href="./">comments</a>
+    <a href="./image_upload.html">image upload</a>
+</nav>
 
-<div class="comments">
-    <div class="comments__entry template">
-        <div class="comment_first_block">
-            <p class="message"></p>
-            <div>
-                <a href="#" class="delete">delete</a>
-                <a href="#" class="edit">edit</a>
+<div class="background_container">
+    <img src="" alt="" class="template">
+</div>
+
+<div class="content_container">
+    <form action="api.php?name=add-comment" id="comments_form">
+        <input type="text" name="author" placeholder="Name" required>
+        <textarea name="message" rows="10" placeholder="Comment Message" required></textarea>
+        <button type="submit">comment</button>
+    </form>
+
+    <div class="comments">
+        <div class="comments__entry template">
+            <div class="comment_first_block">
+                <p class="message"></p>
+                <div>
+                    <a href="#" class="delete">delete</a>
+                    <a href="#" class="edit">edit</a>
+                </div>
+
             </div>
-
+            <strong class="author"></strong>
         </div>
-        <strong class="author"></strong>
     </div>
 </div>
 
