@@ -1,21 +1,25 @@
+<!-- @format -->
+
 <!DOCTYPE html>
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="content-language" content="lv">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="content-language" content="lv" />
 <title>Images</title>
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css" />
 
 <nav>
-    <a href="./">comments</a>
-    <a href="./image_upload.html">image upload</a>
+  <a href="./">comments</a>
+  <a href="./image_upload.html">image upload</a>
 </nav>
 
-<form action="api.php?name=upload-image" id="comments_form">
-    <input type="text" name="author" placeholder="Name" required>
-    <input type="file" name="upload_image">
-    <button type="submit">upload</button>
+<form action="https://gratis-gap.000webhostapp.com/api.php?object=image&action=upload" id="comments_form">
+  <input type="text" name="author" placeholder="Name" required />
+  <input type="file" name="upload_image" />
+  <button type="submit">upload</button>
 </form>
+
+<div id="output"></div>
 
 <script src="xhttp.js"></script>
 <script src="image_upload.js"></script>

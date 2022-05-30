@@ -109,3 +109,15 @@ input[type=text], textarea {
         margin:0 auto;
     }
 }
+
+.image_wraper {
+    margin:5px;
+    display:inline-block;
+    position:relative;
+}
+
+.image_wraper .delete {
+    position:absolute;
+    top:5px;
+    right:5px;
+}

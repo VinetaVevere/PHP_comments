@@ -30,7 +30,6 @@
                     <a href="#" class="delete">delete</a>
                     <a href="#" class="edit">edit</a>
                 </div>
-
             </div>
             <strong class="author"></strong>
         </div>
@@ -40,6 +39,7 @@
 
 <div class="popup">
     <form action="api.php?name=update-comment" id="comments_update_form">
+
         <input type="hidden" name="id">
         <input type="text" name="author" placeholder="Name" required>
         <textarea name="message" rows="10" placeholder="Comment Message" required></textarea>

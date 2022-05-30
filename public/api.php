@@ -2,73 +2,38 @@
 
 include __DIR__ . '/../private/bootstrap.php';
 
-use Storage\DB;
 use Helpers\Comments;
+use Helpers\Images;
+use Helpers\Batch;
 
 header('Content-Type: application/json');
 $output = ['status' => false];
-if (isset($_GET['name']) && is_string($_GET['name'])) {
-    $comment_helper = new Comments();
-    $api_name = ['add-comment', 'update-comment', 'getAll-comment', 'delete-comment', 'get-comment'];
+if (
+    isset($_GET['object']) && is_string($_GET['object']) &&
+    isset($_GET['action']) && is_string($_GET['action'])
+) {
+    $object_name = $_GET['object'];
+    $action_name = $_GET['action'];
 
-    if (array_key_exists($_GET['name'], array_flip($api_name))) {
-        $arr = explode('-', $_GET['name']);
-        $output = $comment_helper->{$arr[0]}();
-    }
-    elseif ($_GET['name'] == 'upload-image') {
-        if (
-            isset($_POST['author']) && is_string($_POST['author']) &&
-            !empty($_FILES) && isset($_FILES['upload_image'])
-        ) {
-            $image_arr = $_FILES['upload_image'];
-            if ($image_arr['error'] == 0) {
+    $supported_objects_and_actions = [
+        'comment' => ['add', 'update', 'getAll', 'delete', 'get'],
+        'image' => ['upload', 'getAll', 'delete'],
+        'batch' => ['getAll']
+    ];
 
-                $author = trim($_POST['author']);
+    $helper_names = [
+        'comment' => 'Comments',
+        'image' => 'Images',
+        'batch' => 'Batch'
+    ];
 
-                $db_image_manager = new DB('images');
-                $id = $db_image_manager->addEntry([
-                    'author' => $author,
-                    'file_name' => explode('.', $image_arr['name'])[0]
-                ]);
-
-                if ($id != false) {
-                    $file_content = file_get_contents($image_arr['tmp_name']);
-                    file_put_contents(UPLOAD_DIR . "image_$id.png", $file_content);
-
-                    $output = [
-                        'status' => true,
-                        'file_name' => $image_arr['name'],
-                        'id' => $id
-                    ];
-                }
-                else {
-                    $output = [
-                        'status' => false,
-                        'error_msg' => $db_image_manager->getError()
-                    ];
-                }
-            }
-        }
-
-    }
-    elseif ($_GET['name'] == 'getAll-image') {
-        $db_image_manager = new DB('images');
-
-        $all_images = $db_image_manager->getAll();
-
-        if ($all_images != false) {
-            $output = [
-                'status' => true,
-                'images' => $all_images
-            ];
-        }
-        else {
-            $output = [
-                'status' => false,
-                'error_msg' => $db_image_manager->getError()
-            ];
-        }
-
+    if (
+        array_key_exists($object_name, $supported_objects_and_actions) &&
+        in_array($action_name, $supported_objects_and_actions[$object_name])
+    ) {
+        $class_name = 'Helpers\\' . $helper_names[$object_name];
+        $helper = new $class_name();
+        $output = $helper->{$action_name}();
     }
 }
 
